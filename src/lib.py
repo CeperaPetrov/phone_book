@@ -1,12 +1,13 @@
 def show_menu():
     print("\nВыберите необходимое действие:\n",
-          "1. Отобразить весь справочник\n",
-          "2. Найти абонента по фамилии\n",
-          "3. Найти абонента по номеру телефона\n",
-          "4. Добавить абонента в справочник\n",
-          "5. Изменить данные абонента в справочнике\n",
-          "6. Удалить абонента из справочника\n",
-          "7. Сохранить справочник в текстовом формате\n",
+          "1. Загрузить справочник из текстового формата\n",          
+          "2. Отобразить весь справочник\n",
+          "3. Найти абонента по фамилии\n",
+          "4. Найти абонента по номеру телефона\n",
+          "5. Добавить абонента в справочник\n",
+          "6. Изменить данные абонента в справочнике\n",
+          "7. Удалить абонента из справочника\n",
+          "8. Сохранить справочник в текстовом формате\n",
           "0. Закончить работу\n")
     try:
         choice = int(input())
@@ -15,8 +16,10 @@ def show_menu():
     return choice
 
 
-def read_txt(filename): 
+def import_from_txt(filename): 
     phone_book = []
+    if filename == '':
+        return phone_book
     fields = ['Фамилия', 'Имя', 'Телефон', 'Описание']
     try:
         with open(filename,'r',encoding='utf-8') as phb:
@@ -28,7 +31,9 @@ def read_txt(filename):
     return phone_book
 
 
-def write_txt(filename , phone_book):
+def export_to_txt(filename , phone_book):
+    if filename == '':
+        return    
     with open(filename,'w',encoding='utf-8') as phout:
         for i in range(len(phone_book)):
             s=''
@@ -38,7 +43,7 @@ def write_txt(filename , phone_book):
 
 
 def print_result(phone_book):
-    '''1. Отобразить весь справочник'''
+    '''2. Отобразить весь справочник'''
     col_size = 20
     head = ''
     div_line = ''
@@ -56,27 +61,27 @@ def print_result(phone_book):
         
 
 def find_by_lastname(phone_book,last_name):
-    '''2. Найти абонента по фамилии'''
+    '''3. Найти абонента по фамилии'''
     pass
 
 
 def find_by_number(phone_book,number):
-    '''3. Найти абонента по номеру телефона'''
+    '''4. Найти абонента по номеру телефона'''
     pass
 
 
 def add_user(phone_book,user_data):
-    '''4. Добавить абонента в справочник'''
+    '''5. Добавить абонента в справочник'''
     pass
 
 
 def change_number(phone_book,last_name,new_number):
-    '''5. Изменить данные абонента в справочнике'''
+    '''6. Изменить данные абонента в справочнике'''
     pass
 
 
 def delete_by_lastname(phone_book,lastname):
-    '''6. Удалить абонента из справочника'''
+    '''7. Удалить абонента из справочника'''
     pass
 
 
