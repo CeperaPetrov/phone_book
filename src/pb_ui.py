@@ -11,6 +11,7 @@ def show_menu():
           "6. Изменить данные абонента в справочнике\n",
           "7. Удалить абонента из справочника\n",
           "8. Сохранить справочник в текстовом формате\n",
+          "9. Копировать данные в другой файл\n",
           "0. Закончить работу\n")
     try:
         choice = int(input())
@@ -21,10 +22,11 @@ def show_menu():
 def print_result(phone_book):
     '''Вывод в терминал данных справочника'''
     col_size = 20
-    head = ''
-    div_line = ''
+    nom_size = 5
+    head = '#'.ljust(nom_size) + '|'
+    div_line = '-'*nom_size + '+'
     for i in range(len(phone_book)):
-        s=''
+        s= str(i + 1).ljust(nom_size) + '|'
         for h,v in phone_book[i].items():
             if i == 0:
                 head = head + h.ljust(col_size) + '|'
@@ -36,14 +38,16 @@ def print_result(phone_book):
         print(f'{s[:-1]}')
 
 def main():
-    filename = ''
+    filename = 'phonebook.txt'
     phone_book= []
     choice=show_menu()    
 
     while (choice):
         #----------------------------------------------------------------------
         if choice == 1:
-            filename=input('filename ')
+            tmp_f_name=input(f'filename <{filename}>')
+            if tmp_f_name != '':
+                filename = tmp_f_name
             phone_book=import_from_txt(filename)
         #----------------------------------------------------------------------
         elif choice == 2:
@@ -79,6 +83,12 @@ def main():
         elif choice == 8:
             #lastname=input('lastname ')
             export_to_txt(filename, phone_book)
+        #----------------------------------------------------------------------
+        elif choice == 9:
+            row_num = int(input('Enter row number '))
+            result_pb = find_by_row_number(phone_book,row_num)
+            target_file = input('Enter target filename ')
+            export_to_txt(target_file, result_pb, 'a')
         #----------------------------------------------------------------------
         choice=show_menu()
 
