@@ -7,8 +7,11 @@ def show_menu():
           "5. Изменить данные абонента в справочнике\n",
           "6. Удалить абонента из справочника\n",
           "7. Сохранить справочник в текстовом формате\n",
-          "8. Закончить работу\n")
-    choice = int(input())
+          "0. Закончить работу\n")
+    try:
+        choice = int(input())
+    except:
+        choice = 0
     return choice
 
 
@@ -36,15 +39,19 @@ def write_txt(filename , phone_book):
 
 def print_result(phone_book):
     '''1. Отобразить весь справочник'''
+    col_size = 20
     head = ''
+    div_line = ''
     for i in range(len(phone_book)):
         s=''
         for h,v in phone_book[i].items():
             if i == 0:
-                head = head + h.ljust(20) + '\t'
-            s = s + v.ljust(20) + '\t'
+                head = head + h.ljust(col_size) + '|'
+                div_line = div_line + '-' * col_size + '+'
+            s = s + v.ljust(col_size) + '|'
         if i == 0: 
             print(f'{head[:-1]}')
+            print(f'{div_line[:-1]}')
         print(f'{s[:-1]}')
         
 

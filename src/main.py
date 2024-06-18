@@ -5,7 +5,7 @@ def main():
     choice=show_menu()
     phone_book=read_txt(filename)
 
-    while (choice != 8):
+    while (choice):
 
         if choice == 1:
             print_result(phone_book)
